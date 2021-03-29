@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
 import {
+  AgoraVideoPlayer,
+  createClient,
+  createMicrophoneAndCameraTracks,
   ClientConfig,
   IAgoraRTCRemoteUser,
   ICameraVideoTrack,
   IMicrophoneAudioTrack,
-} from "agora-rtc-sdk-ng";
-import {
-  AgoraVideoPlayer,
-  createClient,
-  createMicrophoneAndCameraTracks,
 } from "agora-rtc-react";
 
 const config: ClientConfig = { 
@@ -121,12 +119,12 @@ const Videos = (props: {
       <div id="videos">
         {/* AgoraVideoPlayer component takes in the video track to render the stream,
             you can pass in other props that get passed to the rendered div */}
-        <AgoraVideoPlayer className='vid' videoTrack={tracks[1]} />
+        <AgoraVideoPlayer style={{height: '95%', width: '95%'}} className='vid' videoTrack={tracks[1]} />
         {users.length > 0 &&
           users.map((user) => {
             if (user.videoTrack) {
               return (
-                <AgoraVideoPlayer className='vid' videoTrack={user.videoTrack} key={user.uid} />
+                <AgoraVideoPlayer style={{height: '95%', width: '95%'}} className='vid' videoTrack={user.videoTrack} key={user.uid} />
               );
             } else return null;
           })}

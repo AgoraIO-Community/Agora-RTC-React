@@ -16,6 +16,9 @@ import AgoraRTC, {
   ScreenVideoTrackInitConfig
 } from 'agora-rtc-sdk-ng'
 
+export default AgoraRTC;
+export * from 'agora-rtc-sdk-ng';
+
 export const createClient = (config: ClientConfig) => {
   let client: IAgoraRTCClient
   function createClosure() {

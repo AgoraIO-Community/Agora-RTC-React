@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
-import AgoraRTC from 'agora-rtc-sdk-ng';
+import AgoraRTC__default from 'agora-rtc-sdk-ng';
+export * from 'agora-rtc-sdk-ng';
 
 function _objectWithoutPropertiesLoose(source, excluded) {
   if (source == null) return {};
@@ -21,7 +22,7 @@ var createClient = function createClient(config) {
 
   function createClosure() {
     if (!client) {
-      client = AgoraRTC.createClient(config);
+      client = AgoraRTC__default.createClient(config);
     }
 
     return client;
@@ -34,7 +35,7 @@ var createClient = function createClient(config) {
 function createMicrophoneAndCameraTracks(audioConfig, videoConfig) {
   var createClosure = function createClosure() {
     try {
-      return Promise.resolve(AgoraRTC.createMicrophoneAndCameraTracks(audioConfig, videoConfig)).then(function (_AgoraRTC$createMicro) {
+      return Promise.resolve(AgoraRTC__default.createMicrophoneAndCameraTracks(audioConfig, videoConfig)).then(function (_AgoraRTC$createMicro) {
         tracks = _AgoraRTC$createMicro;
         return tracks;
       });
@@ -73,7 +74,7 @@ function createMicrophoneAndCameraTracks(audioConfig, videoConfig) {
 function createBufferSourceAudioTrack(config) {
   var createClosure = function createClosure() {
     try {
-      return Promise.resolve(AgoraRTC.createBufferSourceAudioTrack(config)).then(function (_AgoraRTC$createBuffe) {
+      return Promise.resolve(AgoraRTC__default.createBufferSourceAudioTrack(config)).then(function (_AgoraRTC$createBuffe) {
         track = _AgoraRTC$createBuffe;
         return track;
       });
@@ -112,7 +113,7 @@ function createBufferSourceAudioTrack(config) {
 function createCameraVideoTrack(config) {
   var createClosure = function createClosure() {
     try {
-      return Promise.resolve(AgoraRTC.createCameraVideoTrack(config)).then(function (_AgoraRTC$createCamer) {
+      return Promise.resolve(AgoraRTC__default.createCameraVideoTrack(config)).then(function (_AgoraRTC$createCamer) {
         track = _AgoraRTC$createCamer;
         return track;
       });
@@ -151,7 +152,7 @@ function createCameraVideoTrack(config) {
 function createCustomAudioTrack(config) {
   var createClosure = function createClosure() {
     try {
-      return Promise.resolve(AgoraRTC.createCustomAudioTrack(config)).then(function (_AgoraRTC$createCusto) {
+      return Promise.resolve(AgoraRTC__default.createCustomAudioTrack(config)).then(function (_AgoraRTC$createCusto) {
         track = _AgoraRTC$createCusto;
         return track;
       });
@@ -190,7 +191,7 @@ function createCustomAudioTrack(config) {
 function createCustomVideoTrack(config) {
   var createClosure = function createClosure() {
     try {
-      return Promise.resolve(AgoraRTC.createCustomVideoTrack(config)).then(function (_AgoraRTC$createCusto2) {
+      return Promise.resolve(AgoraRTC__default.createCustomVideoTrack(config)).then(function (_AgoraRTC$createCusto2) {
         track = _AgoraRTC$createCusto2;
         return track;
       });
@@ -229,7 +230,7 @@ function createCustomVideoTrack(config) {
 function createMicrophoneAudioTrack(config) {
   var createClosure = function createClosure() {
     try {
-      return Promise.resolve(AgoraRTC.createMicrophoneAudioTrack(config)).then(function (_AgoraRTC$createMicro2) {
+      return Promise.resolve(AgoraRTC__default.createMicrophoneAudioTrack(config)).then(function (_AgoraRTC$createMicro2) {
         track = _AgoraRTC$createMicro2;
         return track;
       });
@@ -268,7 +269,7 @@ function createMicrophoneAudioTrack(config) {
 function createScreenVideoTrack(config, withAudio) {
   var createClosure = function createClosure() {
     try {
-      return Promise.resolve(AgoraRTC.createScreenVideoTrack(config, withAudio)).then(function (_AgoraRTC$createScree) {
+      return Promise.resolve(AgoraRTC__default.createScreenVideoTrack(config, withAudio)).then(function (_AgoraRTC$createScree) {
         tracks = _AgoraRTC$createScree;
         return tracks;
       });
@@ -317,5 +318,6 @@ var AgoraVideoPlayer = function AgoraVideoPlayer(props) {
   }));
 };
 
+export default AgoraRTC__default;
 export { AgoraVideoPlayer, createBufferSourceAudioTrack, createCameraVideoTrack, createClient, createCustomAudioTrack, createCustomVideoTrack, createMicrophoneAndCameraTracks, createMicrophoneAudioTrack, createScreenVideoTrack };
 //# sourceMappingURL=index.modern.js.map

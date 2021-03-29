@@ -5,26 +5,24 @@ A quick walkthrough of a videocall sample - code from `./example/src/App.tsx` fi
 ```jsx
 import React, { useEffect, useState } from "react";
 import {
-  IAgoraRTCRemoteUser,
-  ICameraVideoTrack,
-  IMicrophoneAudioTrack,
-  SDK_CODEC,
-  SDK_MODE,
-} from "agora-rtc-sdk-ng";
-import {
   AgoraVideoPlayer,
   createClient,
   createMicrophoneAndCameraTracks,
+  ClientConfig,
+  IAgoraRTCRemoteUser,
+  ICameraVideoTrack,
+  IMicrophoneAudioTrack,
 } from "agora-rtc-react";
 ```
-You can import and use the wrapper alongside the SDK. The wrapper makes it easy to access the client object and create/use tracks. As well as gives a component to display the video.
+The wrapper makes it easy to access the client object and create/use tracks. As well as gives a component to display the video. The wrapper contains all the modules that are available from `agora-rtc-sdk-ng`.
 ```jsx
-// define config
-const config = {
-  appId: "", //ENTER APP ID HERE
-  mode: "rtc" as SDK_MODE, codec: "vp8" as SDK_CODEC,
-  token: null,
+// define config for rtc engine
+const config: ClientConfig = { 
+  mode: "rtc", codec: "vp8",
 };
+
+const appId: string = ""; //ENTER APP ID HERE
+const token: string | null = null;
 ```
 Input your App ID and Token here.
 ```jsx
@@ -134,12 +132,12 @@ const Videos = (props: {
   return (
     <div>
       <div id="videos">
-        <AgoraVideoPlayer className='vid' videoTrack={tracks[1]} />
+        <AgoraVideoPlayer className='vid' videoTrack={tracks[1]} style={{height: '95%', width: '95%'}} />
         {users.length > 0 &&
           users.map((user) => {
             if (user.videoTrack) {
               return (
-                <AgoraVideoPlayer className='vid' videoTrack={user.videoTrack} key={user.uid} />
+                <AgoraVideoPlayer className='vid' videoTrack={user.videoTrack} style={{height: '95%', width: '95%'}} key={user.uid} />
               );
             } else return null;
           })}

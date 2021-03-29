@@ -1,5 +1,7 @@
 import React from 'react';
-import { BufferSourceAudioTrackInitConfig, CameraVideoTrackInitConfig, ClientConfig, CustomAudioTrackInitConfig, CustomVideoTrackInitConfig, IAgoraRTCClient, IBufferSourceAudioTrack, ICameraVideoTrack, ILocalAudioTrack, ILocalVideoTrack, IMicrophoneAudioTrack, IRemoteVideoTrack, MicrophoneAudioTrackInitConfig, ScreenVideoTrackInitConfig } from 'agora-rtc-sdk-ng';
+import AgoraRTC, { BufferSourceAudioTrackInitConfig, CameraVideoTrackInitConfig, ClientConfig, CustomAudioTrackInitConfig, CustomVideoTrackInitConfig, IAgoraRTCClient, IBufferSourceAudioTrack, ICameraVideoTrack, ILocalAudioTrack, ILocalVideoTrack, IMicrophoneAudioTrack, IRemoteVideoTrack, MicrophoneAudioTrackInitConfig, ScreenVideoTrackInitConfig } from 'agora-rtc-sdk-ng';
+export default AgoraRTC;
+export * from 'agora-rtc-sdk-ng';
 export declare const createClient: (config: ClientConfig) => () => IAgoraRTCClient;
 export declare function createMicrophoneAndCameraTracks(audioConfig?: MicrophoneAudioTrackInitConfig | undefined, videoConfig?: CameraVideoTrackInitConfig | undefined): () => {
     ready: boolean;

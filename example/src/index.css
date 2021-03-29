@@ -39,8 +39,6 @@ body {
 .vid{
   position: relative;
   background-color:black;
-  height: 95%;
-  width: 95%;
   border-width: 1px;
   border-color: #38373A;
   border-style: solid;

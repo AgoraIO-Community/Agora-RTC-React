@@ -1,7 +1,7 @@
 {
   "name": "agora-rtc-react",
-  "version": "1.0.0",
-  "description": "A react wrapper for Agora RTC NG SDK",
+  "version": "1.0.1",
+  "description": "A wrapper for Agora RTC NG SDK to use with react/reactjs",
   "author": "EkaanshArora",
   "repository": "AgoraIO-Community/agora-rtc-react",
   "main": "dist/index.js",

@@ -20,12 +20,14 @@ All methods take in the same parameters as the NG SDK. You can visit the officia
 ### AgoraVideoPlayer
 This component lets you display a video track in the DOM.
 You can pass in the `videoTrack` as prop along with other props that get passed to the rendered div containing your video.
+
+***Note***: You need to pass in the height & width for the video player using the style prop (or className/id) which is applied to the resultant div containig the video, otherwise the renderd div is of size 0px.
 #### ***Required Prop***
 videoTrack: [ILocalVideoTrack](https://docs.agora.io/en/Video/API%20Reference/web_ng/interfaces/ilocalvideotrack.html) | [IRemoteVideoTrack](https://docs.agora.io/en/Video/API%20Reference/web_ng/interfaces/iremotevideotrack.html) | [ICameraVideoTrack](https://docs.agora.io/en/Video/API%20Reference/web_ng/interfaces/icameravideotrack.html)
 
 Example:
 ```tsx
-<AgoraVideoPlayer videoTrack={track} className="video" key={key} style={{height: '100px'}} />
+<AgoraVideoPlayer videoTrack={track} className="video" key={key} style={{height: '100%', width: '100%'}} />
 ```
 ## Wrapper Functions Examples
 
@@ -61,7 +63,7 @@ const App = () => {
   const { ready, tracks } = useMicrophoneAndCameraTracks();
 
   return (
-    ready && <AgoraVideoPlayer videoTrack={tracks[1]} />
+    ready && <AgoraVideoPlayer videoTrack={tracks[1]} style={{height: '100%', width: '100%'}} />
   )
 }
 ```
@@ -69,4 +71,4 @@ All other create methods use a similar pattern.
 
 ## Other AgoraRTC Methods
 
-For other RTC SDK methods you can directly use them from the [AgoraRTC](https://docs.agora.io/en/Video/API%20Reference/web_ng/interfaces/iagorartc.html) object. Look at the example using the wrapper for group videocall [here](example.md) to understand better.
+For other RTC SDK methods you can directly use them from the [AgoraRTC](https://docs.agora.io/en/Video/API%20Reference/web_ng/interfaces/iagorartc.html) object. Look at the example using the wrapper for group videocall [here](https://github.com/AgoraIO-Community/agora-rtc-react/wiki/Example) to understand better.

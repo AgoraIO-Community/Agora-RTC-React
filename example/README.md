@@ -2,4 +2,4 @@
 
 This is an example for [Agora RTC SDK React Wrapper](https://github.com/AgoraIO-Community/agora-rtc-react).
 
-You can find out how this works [here](../example.md).
+You can find out how this works [here](https://github.com/AgoraIO-Community/agora-rtc-react/wiki/Example).
