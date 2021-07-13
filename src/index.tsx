@@ -44,6 +44,7 @@ export function createMicrophoneAndCameraTracks(
   }
   return function useMicrophoneAndCameraTracks() {
     const [ready, setReady] = useState(false)
+    const [agoraRTCError, setAgoraRTCError] = useState<null | any>(null)
     const ref = useRef(tracks)
 
     useEffect(() => {
@@ -51,6 +52,8 @@ export function createMicrophoneAndCameraTracks(
         createClosure().then((tracks) => {
           ref.current = tracks
           setReady(true)
+        }, (e) => {
+          setAgoraRTCError(e)
         })
       } else {
         setReady(true)
@@ -59,7 +62,7 @@ export function createMicrophoneAndCameraTracks(
         tracks = null
       }
     }, [])
-    return { ready, tracks: ref.current }
+    return { ready, tracks: ref.current, agoraRTCError }
   }
 }
 
@@ -213,6 +216,7 @@ export function createScreenVideoTrack(
   }
   return function useScreenVideoTrack() {
     const [ready, setReady] = useState(false)
+    const [agoraRTCError, setAgoraRTCError] = useState<null | any>(null)
     const ref = useRef(tracks)
 
     useEffect(() => {
@@ -220,12 +224,14 @@ export function createScreenVideoTrack(
         createClosure().then((tracks) => {
           ref.current = tracks
           setReady(true)
+        }, (e) => {
+          setAgoraRTCError(e)
         })
       } else {
         setReady(true)
       }
     }, [])
-    return { ready, tracks: ref.current }
+    return { ready, tracks: ref.current, agoraRTCError }
   }
 }
 
