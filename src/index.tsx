@@ -19,6 +19,85 @@ import AgoraRTC, {
 export default AgoraRTC;
 export * from 'agora-rtc-sdk-ng';
 
+export interface AgoraRTCError {
+  code: AgoraRTCErrorCode;
+  message: string;
+  data?: any;
+  name: string;
+}
+
+export declare enum AgoraRTCErrorCode {
+  UNEXPECTED_ERROR = "UNEXPECTED_ERROR",
+  UNEXPECTED_RESPONSE = "UNEXPECTED_RESPONSE",
+  TIMEOUT = "TIMEOUT",
+  INVALID_PARAMS = "INVALID_PARAMS",
+  NOT_SUPPORTED = "NOT_SUPPORTED",
+  INVALID_OPERATION = "INVALID_OPERATION",
+  OPERATION_ABORTED = "OPERATION_ABORTED",
+  WEB_SECURITY_RESTRICT = "WEB_SECURITY_RESTRICT",
+  NETWORK_ERROR = "NETWORK_ERROR",
+  NETWORK_TIMEOUT = "NETWORK_TIMEOUT",
+  NETWORK_RESPONSE_ERROR = "NETWORK_RESPONSE_ERROR",
+  API_INVOKE_TIMEOUT = "API_INVOKE_TIMEOUT",
+  ENUMERATE_DEVICES_FAILED = "ENUMERATE_DEVICES_FAILED",
+  DEVICE_NOT_FOUND = "DEVICE_NOT_FOUND",
+  ELECTRON_IS_NULL = "ELECTRON_IS_NULL",
+  ELECTRON_DESKTOP_CAPTURER_GET_SOURCES_ERROR = "ELECTRON_DESKTOP_CAPTURER_GET_SOURCES_ERROR",
+  CHROME_PLUGIN_NO_RESPONSE = "CHROME_PLUGIN_NO_RESPONSE",
+  CHROME_PLUGIN_NOT_INSTALL = "CHROME_PLUGIN_NOT_INSTALL",
+  MEDIA_OPTION_INVALID = "MEDIA_OPTION_INVALID",
+  PERMISSION_DENIED = "PERMISSION_DENIED",
+  CONSTRAINT_NOT_SATISFIED = "CONSTRAINT_NOT_SATISFIED",
+  TRACK_IS_DISABLED = "TRACK_IS_DISABLED",
+  SHARE_AUDIO_NOT_ALLOWED = "SHARE_AUDIO_NOT_ALLOWED",
+  LOW_STREAM_ENCODING_ERROR = "LOW_STREAM_ENCODING_ERROR",
+  INVALID_UINT_UID_FROM_STRING_UID = "INVALID_UINT_UID_FROM_STRING_UID",
+  CAN_NOT_GET_PROXY_SERVER = "CAN_NOT_GET_PROXY_SERVER",
+  CAN_NOT_GET_GATEWAY_SERVER = "CAN_NOT_GET_GATEWAY_SERVER",
+  VOID_GATEWAY_ADDRESS = "VOID_GATEWAY_ADDRESS",
+  UID_CONFLICT = "UID_CONFLICT",
+  INVALID_LOCAL_TRACK = "INVALID_LOCAL_TRACK",
+  INVALID_TRACK = "INVALID_TRACK",
+  SENDER_NOT_FOUND = "SENDER_NOT_FOUND",
+  CREATE_OFFER_FAILED = "CREATE_OFFER_FAILED",
+  SET_ANSWER_FAILED = "SET_ANSWER_FAILED",
+  ICE_FAILED = "ICE_FAILED",
+  PC_CLOSED = "PC_CLOSED",
+  SENDER_REPLACE_FAILED = "SENDER_REPLACE_FAILED",
+  GATEWAY_P2P_LOST = "GATEWAY_P2P_LOST",
+  NO_ICE_CANDIDATE = "NO_ICE_CANDIDATE",
+  CAN_NOT_PUBLISH_MULTIPLE_VIDEO_TRACKS = "CAN_NOT_PUBLISH_MULTIPLE_VIDEO_TRACKS",
+  EXIST_DISABLED_VIDEO_TRACK = "EXIST_DISABLED_VIDEO_TRACK",
+  INVALID_REMOTE_USER = "INVALID_REMOTE_USER",
+  REMOTE_USER_IS_NOT_PUBLISHED = "REMOTE_USER_IS_NOT_PUBLISHED",
+  CUSTOM_REPORT_SEND_FAILED = "CUSTOM_REPORT_SEND_FAILED",
+  CUSTOM_REPORT_FREQUENCY_TOO_HIGH = "CUSTOM_REPORT_FREQUENCY_TOO_HIGH",
+  FETCH_AUDIO_FILE_FAILED = "FETCH_AUDIO_FILE_FAILED",
+  READ_LOCAL_AUDIO_FILE_ERROR = "READ_LOCAL_AUDIO_FILE_ERROR",
+  DECODE_AUDIO_FILE_FAILED = "DECODE_AUDIO_FILE_FAILED",
+  WS_ABORT = "WS_ABORT",
+  WS_DISCONNECT = "WS_DISCONNECT",
+  WS_ERR = "WS_ERR",
+  LIVE_STREAMING_TASK_CONFLICT = "LIVE_STREAMING_TASK_CONFLICT",
+  LIVE_STREAMING_INVALID_ARGUMENT = "LIVE_STREAMING_INVALID_ARGUMENT",
+  LIVE_STREAMING_INTERNAL_SERVER_ERROR = "LIVE_STREAMING_INTERNAL_SERVER_ERROR",
+  LIVE_STREAMING_PUBLISH_STREAM_NOT_AUTHORIZED = "LIVE_STREAMING_PUBLISH_STREAM_NOT_AUTHORIZED",
+  LIVE_STREAMING_TRANSCODING_NOT_SUPPORTED = "LIVE_STREAMING_TRANSCODING_NOT_SUPPORTED",
+  LIVE_STREAMING_CDN_ERROR = "LIVE_STREAMING_CDN_ERROR",
+  LIVE_STREAMING_INVALID_RAW_STREAM = "LIVE_STREAMING_INVALID_RAW_STREAM",
+  LIVE_STREAMING_WARN_STREAM_NUM_REACH_LIMIT = "LIVE_STREAMING_WARN_STREAM_NUM_REACH_LIMIT",
+  LIVE_STREAMING_WARN_FAILED_LOAD_IMAGE = "LIVE_STREAMING_WARN_FAILED_LOAD_IMAGE",
+  LIVE_STREAMING_WARN_FREQUENT_REQUEST = "LIVE_STREAMING_WARN_FREQUENT_REQUEST",
+  WEBGL_INTERNAL_ERROR = "WEBGL_INTERNAL_ERROR",
+  BEAUTY_PROCESSOR_INTERNAL_ERROR = "BEAUTY_PROCESSOR_INTERNAL_ERROR",
+  CROSS_CHANNEL_WAIT_STATUS_ERROR = "CROSS_CHANNEL_WAIT_STATUS_ERROR",
+  CROSS_CHANNEL_FAILED_JOIN_SRC = "CROSS_CHANNEL_FAILED_JOIN_SEC",
+  CROSS_CHANNEL_FAILED_JOIN_DEST = "CROSS_CHANNEL_FAILED_JOIN_DEST",
+  CROSS_CHANNEL_FAILED_PACKET_SENT_TO_DEST = "CROSS_CHANNEL_FAILED_PACKET_SENT_TO_DEST",
+  CROSS_CHANNEL_SERVER_ERROR_RESPONSE = "CROSS_CHANNEL_SERVER_ERROR_RESPONSE",
+  METADATA_OUT_OF_RANGE = "METADATA_OUT_OF_RANGE"
+}
+
 export const createClient = (config: ClientConfig) => {
   let client: IAgoraRTCClient
   function createClosure() {
@@ -44,7 +123,7 @@ export function createMicrophoneAndCameraTracks(
   }
   return function useMicrophoneAndCameraTracks() {
     const [ready, setReady] = useState(false)
-    const [agoraRTCError, setAgoraRTCError] = useState<null | any>(null)
+    const [agoraRTCError, setAgoraRTCError] = useState<null | AgoraRTCError>(null)
     const ref = useRef(tracks)
 
     useEffect(() => {
@@ -62,7 +141,7 @@ export function createMicrophoneAndCameraTracks(
         tracks = null
       }
     }, [])
-    return { ready, tracks: ref.current, agoraRTCError }
+    return { ready, tracks: ref.current, error: agoraRTCError }
   }
 }
 
@@ -76,6 +155,7 @@ export function createBufferSourceAudioTrack(
   }
   return function useBufferSourceAudioTrack() {
     const [ready, setReady] = useState(false)
+    const [agoraRTCError, setAgoraRTCError] = useState<null | AgoraRTCError>(null)
     const ref = useRef(track)
 
     useEffect(() => {
@@ -83,6 +163,8 @@ export function createBufferSourceAudioTrack(
         createClosure().then((track) => {
           ref.current = track
           setReady(true)
+        }, (e) => {
+          setAgoraRTCError(e)
         })
       } else {
         setReady(true)
@@ -91,7 +173,7 @@ export function createBufferSourceAudioTrack(
         track = null
       }
     }, [])
-    return { ready, track: ref.current }
+    return { ready, track: ref.current, error: agoraRTCError }
   }
 }
 
@@ -103,6 +185,7 @@ export function createCameraVideoTrack(config?: CameraVideoTrackInitConfig) {
   }
   return function useCameraVideoTrack() {
     const [ready, setReady] = useState(false)
+    const [agoraRTCError, setAgoraRTCError] = useState<null | AgoraRTCError>(null)
     const ref = useRef(track)
 
     useEffect(() => {
@@ -110,6 +193,8 @@ export function createCameraVideoTrack(config?: CameraVideoTrackInitConfig) {
         createClosure().then((track) => {
           ref.current = track
           setReady(true)
+        }, (e) => {
+          setAgoraRTCError(e)
         })
       } else {
         setReady(true)
@@ -118,7 +203,7 @@ export function createCameraVideoTrack(config?: CameraVideoTrackInitConfig) {
         track = null
       }
     }, [])
-    return { ready, track: ref.current }
+    return { ready, track: ref.current, error: agoraRTCError }
   }
 }
 
@@ -130,6 +215,7 @@ export function createCustomAudioTrack(config: CustomAudioTrackInitConfig) {
   }
   return function useCustomAudioTrack() {
     const [ready, setReady] = useState(false)
+    const [agoraRTCError, setAgoraRTCError] = useState<null | AgoraRTCError>(null)
     const ref = useRef(track)
 
     useEffect(() => {
@@ -137,6 +223,8 @@ export function createCustomAudioTrack(config: CustomAudioTrackInitConfig) {
         createClosure().then((track) => {
           ref.current = track
           setReady(true)
+        }, (e) => {
+          setAgoraRTCError(e)
         })
       } else {
         setReady(true)
@@ -145,7 +233,7 @@ export function createCustomAudioTrack(config: CustomAudioTrackInitConfig) {
         track = null
       }
     }, [])
-    return { ready, track: ref.current }
+    return { ready, track: ref.current, error: agoraRTCError }
   }
 }
 
@@ -186,6 +274,7 @@ export function createMicrophoneAudioTrack(
   }
   return function useMicrophoneAudioTrack() {
     const [ready, setReady] = useState(false)
+    const [agoraRTCError, setAgoraRTCError] = useState<null | AgoraRTCError>(null)
     const ref = useRef(track)
 
     useEffect(() => {
@@ -193,6 +282,8 @@ export function createMicrophoneAudioTrack(
         createClosure().then((track) => {
           ref.current = track
           setReady(true)
+        }, (e) => {
+          setAgoraRTCError(e)
         })
       } else {
         setReady(true)
@@ -201,7 +292,7 @@ export function createMicrophoneAudioTrack(
         track = null
       }
     }, [])
-    return { ready, track: ref.current }
+    return { ready, track: ref.current, error: agoraRTCError }
   }
 }
 
@@ -216,7 +307,7 @@ export function createScreenVideoTrack(
   }
   return function useScreenVideoTrack() {
     const [ready, setReady] = useState(false)
-    const [agoraRTCError, setAgoraRTCError] = useState<null | any>(null)
+    const [agoraRTCError, setAgoraRTCError] = useState<null | AgoraRTCError>(null)
     const ref = useRef(tracks)
 
     useEffect(() => {
@@ -231,7 +322,7 @@ export function createScreenVideoTrack(
         setReady(true)
       }
     }, [])
-    return { ready, tracks: ref.current, agoraRTCError }
+    return { ready, tracks: ref.current, error: agoraRTCError }
   }
 }
 
