@@ -245,6 +245,7 @@ export function createCustomVideoTrack(config: CustomVideoTrackInitConfig) {
   }
   return function useCustomVideoTrack() {
     const [ready, setReady] = useState(false)
+    const [agoraRTCError, setAgoraRTCError] = useState<null | AgoraRTCError>(null)
     const ref = useRef(track)
 
     useEffect(() => {
@@ -252,6 +253,8 @@ export function createCustomVideoTrack(config: CustomVideoTrackInitConfig) {
         createClosure().then((track) => {
           ref.current = track
           setReady(true)
+        }, (e) => {
+          setAgoraRTCError(e)
         })
       } else {
         setReady(true)
@@ -260,7 +263,7 @@ export function createCustomVideoTrack(config: CustomVideoTrackInitConfig) {
         track = null
       }
     }, [])
-    return { ready, track: ref.current }
+    return { ready, track: ref.current, error: agoraRTCError }
   }
 }
 
