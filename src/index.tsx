@@ -13,7 +13,8 @@ import AgoraRTC, {
   IMicrophoneAudioTrack,
   IRemoteVideoTrack,
   MicrophoneAudioTrackInitConfig,
-  ScreenVideoTrackInitConfig
+  ScreenVideoTrackInitConfig,
+  VideoPlayerConfig
 } from 'agora-rtc-sdk-ng'
 
 export default AgoraRTC;
@@ -330,11 +331,11 @@ export function createScreenVideoTrack(
 }
 
 
-export const AgoraVideoPlayer = (props: React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> & { videoTrack: ILocalVideoTrack | IRemoteVideoTrack | ICameraVideoTrack }) => {
+export const AgoraVideoPlayer = (props: React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> & { videoTrack: ILocalVideoTrack | IRemoteVideoTrack | ICameraVideoTrack } & {config?: VideoPlayerConfig}) => {
   const vidDiv: RefObject<HTMLDivElement> = useRef(null)
-  const { videoTrack, ...other } = props;
+  const { videoTrack, config, ...other } = props;
   useEffect(() => {
-    if (vidDiv.current !== null) videoTrack.play(vidDiv.current)
+    if (vidDiv.current !== null) videoTrack.play(vidDiv.current, config)
     return () => {
       videoTrack.stop()
     }
