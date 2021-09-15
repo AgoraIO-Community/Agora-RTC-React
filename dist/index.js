@@ -53,12 +53,18 @@ function createMicrophoneAndCameraTracks(audioConfig, videoConfig) {
         ready = _useState[0],
         setReady = _useState[1];
 
+    var _useState2 = React.useState(null),
+        agoraRTCError = _useState2[0],
+        setAgoraRTCError = _useState2[1];
+
     var ref = React.useRef(tracks);
     React.useEffect(function () {
       if (ref.current === null) {
         createClosure().then(function (tracks) {
           ref.current = tracks;
           setReady(true);
+        }, function (e) {
+          setAgoraRTCError(e);
         });
       } else {
         setReady(true);
@@ -70,7 +76,8 @@ function createMicrophoneAndCameraTracks(audioConfig, videoConfig) {
     }, []);
     return {
       ready: ready,
-      tracks: ref.current
+      tracks: ref.current,
+      error: agoraRTCError
     };
   };
 }
@@ -88,9 +95,13 @@ function createBufferSourceAudioTrack(config) {
 
   var track = null;
   return function useBufferSourceAudioTrack() {
-    var _useState2 = React.useState(false),
-        ready = _useState2[0],
-        setReady = _useState2[1];
+    var _useState3 = React.useState(false),
+        ready = _useState3[0],
+        setReady = _useState3[1];
+
+    var _useState4 = React.useState(null),
+        agoraRTCError = _useState4[0],
+        setAgoraRTCError = _useState4[1];
 
     var ref = React.useRef(track);
     React.useEffect(function () {
@@ -98,6 +109,8 @@ function createBufferSourceAudioTrack(config) {
         createClosure().then(function (track) {
           ref.current = track;
           setReady(true);
+        }, function (e) {
+          setAgoraRTCError(e);
         });
       } else {
         setReady(true);
@@ -109,7 +122,8 @@ function createBufferSourceAudioTrack(config) {
     }, []);
     return {
       ready: ready,
-      track: ref.current
+      track: ref.current,
+      error: agoraRTCError
     };
   };
 }
@@ -127,9 +141,13 @@ function createCameraVideoTrack(config) {
 
   var track = null;
   return function useCameraVideoTrack() {
-    var _useState3 = React.useState(false),
-        ready = _useState3[0],
-        setReady = _useState3[1];
+    var _useState5 = React.useState(false),
+        ready = _useState5[0],
+        setReady = _useState5[1];
+
+    var _useState6 = React.useState(null),
+        agoraRTCError = _useState6[0],
+        setAgoraRTCError = _useState6[1];
 
     var ref = React.useRef(track);
     React.useEffect(function () {
@@ -137,6 +155,8 @@ function createCameraVideoTrack(config) {
         createClosure().then(function (track) {
           ref.current = track;
           setReady(true);
+        }, function (e) {
+          setAgoraRTCError(e);
         });
       } else {
         setReady(true);
@@ -148,7 +168,8 @@ function createCameraVideoTrack(config) {
     }, []);
     return {
       ready: ready,
-      track: ref.current
+      track: ref.current,
+      error: agoraRTCError
     };
   };
 }
@@ -166,9 +187,13 @@ function createCustomAudioTrack(config) {
 
   var track = null;
   return function useCustomAudioTrack() {
-    var _useState4 = React.useState(false),
-        ready = _useState4[0],
-        setReady = _useState4[1];
+    var _useState7 = React.useState(false),
+        ready = _useState7[0],
+        setReady = _useState7[1];
+
+    var _useState8 = React.useState(null),
+        agoraRTCError = _useState8[0],
+        setAgoraRTCError = _useState8[1];
 
     var ref = React.useRef(track);
     React.useEffect(function () {
@@ -176,6 +201,8 @@ function createCustomAudioTrack(config) {
         createClosure().then(function (track) {
           ref.current = track;
           setReady(true);
+        }, function (e) {
+          setAgoraRTCError(e);
         });
       } else {
         setReady(true);
@@ -187,7 +214,8 @@ function createCustomAudioTrack(config) {
     }, []);
     return {
       ready: ready,
-      track: ref.current
+      track: ref.current,
+      error: agoraRTCError
     };
   };
 }
@@ -205,9 +233,13 @@ function createCustomVideoTrack(config) {
 
   var track = null;
   return function useCustomVideoTrack() {
-    var _useState5 = React.useState(false),
-        ready = _useState5[0],
-        setReady = _useState5[1];
+    var _useState9 = React.useState(false),
+        ready = _useState9[0],
+        setReady = _useState9[1];
+
+    var _useState10 = React.useState(null),
+        agoraRTCError = _useState10[0],
+        setAgoraRTCError = _useState10[1];
 
     var ref = React.useRef(track);
     React.useEffect(function () {
@@ -215,6 +247,8 @@ function createCustomVideoTrack(config) {
         createClosure().then(function (track) {
           ref.current = track;
           setReady(true);
+        }, function (e) {
+          setAgoraRTCError(e);
         });
       } else {
         setReady(true);
@@ -226,7 +260,8 @@ function createCustomVideoTrack(config) {
     }, []);
     return {
       ready: ready,
-      track: ref.current
+      track: ref.current,
+      error: agoraRTCError
     };
   };
 }
@@ -244,9 +279,13 @@ function createMicrophoneAudioTrack(config) {
 
   var track = null;
   return function useMicrophoneAudioTrack() {
-    var _useState6 = React.useState(false),
-        ready = _useState6[0],
-        setReady = _useState6[1];
+    var _useState11 = React.useState(false),
+        ready = _useState11[0],
+        setReady = _useState11[1];
+
+    var _useState12 = React.useState(null),
+        agoraRTCError = _useState12[0],
+        setAgoraRTCError = _useState12[1];
 
     var ref = React.useRef(track);
     React.useEffect(function () {
@@ -254,6 +293,8 @@ function createMicrophoneAudioTrack(config) {
         createClosure().then(function (track) {
           ref.current = track;
           setReady(true);
+        }, function (e) {
+          setAgoraRTCError(e);
         });
       } else {
         setReady(true);
@@ -265,7 +306,8 @@ function createMicrophoneAudioTrack(config) {
     }, []);
     return {
       ready: ready,
-      track: ref.current
+      track: ref.current,
+      error: agoraRTCError
     };
   };
 }
@@ -283,9 +325,13 @@ function createScreenVideoTrack(config, withAudio) {
 
   var tracks;
   return function useScreenVideoTrack() {
-    var _useState7 = React.useState(false),
-        ready = _useState7[0],
-        setReady = _useState7[1];
+    var _useState13 = React.useState(false),
+        ready = _useState13[0],
+        setReady = _useState13[1];
+
+    var _useState14 = React.useState(null),
+        agoraRTCError = _useState14[0],
+        setAgoraRTCError = _useState14[1];
 
     var ref = React.useRef(tracks);
     React.useEffect(function () {
@@ -293,6 +339,8 @@ function createScreenVideoTrack(config, withAudio) {
         createClosure().then(function (tracks) {
           ref.current = tracks;
           setReady(true);
+        }, function (e) {
+          setAgoraRTCError(e);
         });
       } else {
         setReady(true);
@@ -300,7 +348,8 @@ function createScreenVideoTrack(config, withAudio) {
     }, []);
     return {
       ready: ready,
-      tracks: ref.current
+      tracks: ref.current,
+      error: agoraRTCError
     };
   };
 }
@@ -308,10 +357,11 @@ var AgoraVideoPlayer = function AgoraVideoPlayer(props) {
   var vidDiv = React.useRef(null);
 
   var videoTrack = props.videoTrack,
-      other = _objectWithoutPropertiesLoose(props, ["videoTrack"]);
+      config = props.config,
+      other = _objectWithoutPropertiesLoose(props, ["videoTrack", "config"]);
 
   React.useEffect(function () {
-    if (vidDiv.current !== null) videoTrack.play(vidDiv.current);
+    if (vidDiv.current !== null) videoTrack.play(vidDiv.current, config);
     return function () {
       videoTrack.stop();
     };
