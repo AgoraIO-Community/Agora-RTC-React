@@ -23,7 +23,7 @@
     "deploy": "gh-pages -d example/build"
   },
   "peerDependencies": {
-    "react": "^16.8.0 || ^17"
+    "react": "^16.8.0 || ^17 || ^18"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^4.2.4",
