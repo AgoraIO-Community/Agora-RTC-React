@@ -13,7 +13,7 @@ const config: ClientConfig = {
   mode: "rtc", codec: "vp8",
 };
 
-const appId: string = ""; //ENTER APP ID HERE
+const appId: string = `${process.env.REACT_APP_AGORA_APP_ID}`; // replace with your app id
 const token: string | null = null;
 
 const App = () => {
