@@ -110,6 +110,10 @@ export const createClient = (config: ClientConfig) => {
   return () => createClosure()
 }
 
+export const setLogLevel = () => {
+  return AgoraRTC.setLogLevel;
+}
+
 export function createMicrophoneAndCameraTracks(
   audioConfig?: MicrophoneAudioTrackInitConfig | undefined,
   videoConfig?: CameraVideoTrackInitConfig | undefined
