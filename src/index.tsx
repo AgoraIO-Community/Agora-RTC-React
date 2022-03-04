@@ -27,7 +27,7 @@ export interface AgoraRTCError {
   name: string;
 }
 
-export declare enum AgoraRTCErrorCode {
+export enum AgoraRTCErrorCode {
   UNEXPECTED_ERROR = "UNEXPECTED_ERROR",
   UNEXPECTED_RESPONSE = "UNEXPECTED_RESPONSE",
   TIMEOUT = "TIMEOUT",
