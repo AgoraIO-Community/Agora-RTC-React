@@ -432,7 +432,7 @@ var AgoraVideoPlayer = function AgoraVideoPlayer(props) {
       config = props.config,
       other = _objectWithoutPropertiesLoose(props, ["videoTrack", "config"]);
 
-  React.useEffect(function () {
+  React.useLayoutEffect(function () {
     if (vidDiv.current !== null) videoTrack.play(vidDiv.current, config);
     return function () {
       videoTrack.stop();
