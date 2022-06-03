@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useLayoutEffect } from 'react';
 import AgoraRTC__default from 'agora-rtc-sdk-ng';
 export * from 'agora-rtc-sdk-ng';
 
@@ -431,7 +431,7 @@ var AgoraVideoPlayer = function AgoraVideoPlayer(props) {
       config = props.config,
       other = _objectWithoutPropertiesLoose(props, ["videoTrack", "config"]);
 
-  useEffect(function () {
+  useLayoutEffect(function () {
     if (vidDiv.current !== null) videoTrack.play(vidDiv.current, config);
     return function () {
       videoTrack.stop();

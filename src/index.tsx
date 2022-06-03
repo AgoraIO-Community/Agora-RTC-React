@@ -1,4 +1,4 @@
-import React, { RefObject, useEffect, useRef, useState } from 'react'
+import React, { RefObject, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import AgoraRTC, {
   BufferSourceAudioTrackInitConfig,
   CameraVideoTrackInitConfig,
@@ -334,7 +334,7 @@ export function createScreenVideoTrack(
 export const AgoraVideoPlayer = (props: React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> & { videoTrack: ILocalVideoTrack | IRemoteVideoTrack | ICameraVideoTrack } & {config?: VideoPlayerConfig}) => {
   const vidDiv: RefObject<HTMLDivElement> = useRef(null)
   const { videoTrack, config, ...other } = props;
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (vidDiv.current !== null) videoTrack.play(vidDiv.current, config)
     return () => {
       videoTrack.stop()
