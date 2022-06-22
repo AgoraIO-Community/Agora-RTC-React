@@ -34,4 +34,4 @@ const App = () => {
 A full videocall example using the wrapper can be found [here](https://github.com/AgoraIO-Community/agora-rtc-react/wiki/Example).
 
 ## Reference 
-You can view the methods in the wrapper [here](https://github.com/AgoraIO-Community/agora-rtc-react/wiki/API).
+You can view the methods in the wrapper [here](https://agoraio-community.github.io/Agora-RTC-React).

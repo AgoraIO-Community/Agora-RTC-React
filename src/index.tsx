@@ -1,3 +1,6 @@
+/**
+ * @module Agora React Wrapper
+ */
 import React, { RefObject, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import AgoraRTC, {
   BufferSourceAudioTrackInitConfig,
@@ -20,6 +23,9 @@ import AgoraRTC, {
 export default AgoraRTC;
 export * from 'agora-rtc-sdk-ng';
 
+/**
+ * @ignore
+ */
 export interface AgoraRTCError {
   code: AgoraRTCErrorCode;
   message: string;
@@ -27,6 +33,9 @@ export interface AgoraRTCError {
   name: string;
 }
 
+/**
+ * @ignore
+ */
 export enum AgoraRTCErrorCode {
   UNEXPECTED_ERROR = "UNEXPECTED_ERROR",
   UNEXPECTED_RESPONSE = "UNEXPECTED_RESPONSE",
@@ -99,6 +108,12 @@ export enum AgoraRTCErrorCode {
   METADATA_OUT_OF_RANGE = "METADATA_OUT_OF_RANGE"
 }
 
+/**
+ * Initializes a Web SDK client and stores the instance for the lifecycle of the application 
+ * @param config Configuration for the Web SDK Client instance
+ * @returns React hook that gives access to the Web SDK Client instance
+ * @category Wrapper
+ */
 export const createClient = (config: ClientConfig) => {
   let client: IAgoraRTCClient
   function createClosure() {
@@ -110,6 +125,13 @@ export const createClient = (config: ClientConfig) => {
   return () => createClosure()
 }
 
+/**
+ * Creates and stores the camera and microphone tracks
+ * @param audioConfig Config for the audio track
+ * @param videoConfig Config for the video track
+ * @returns React hook that can be used to access the camera and microphone tracks
+ * @category Wrapper
+ */
 export function createMicrophoneAndCameraTracks(
   audioConfig?: MicrophoneAudioTrackInitConfig | undefined,
   videoConfig?: CameraVideoTrackInitConfig | undefined
@@ -146,6 +168,12 @@ export function createMicrophoneAndCameraTracks(
   }
 }
 
+/**
+ * Creates and stores the buffer source audio track
+ * @param config Config for the buffer source audio track
+ * @returns React hook that can be used to access the buffer source audio track
+ * @category Wrapper
+ */
 export function createBufferSourceAudioTrack(
   config: BufferSourceAudioTrackInitConfig
 ) {
@@ -178,6 +206,12 @@ export function createBufferSourceAudioTrack(
   }
 }
 
+/**
+ * Creates and stores the camera track
+ * @param config Config for the camera track
+ * @returns React hook that can be used to access the camera track
+ * @category Wrapper
+ */
 export function createCameraVideoTrack(config?: CameraVideoTrackInitConfig) {
   let track: ICameraVideoTrack | null = null
   async function createClosure() {
@@ -208,6 +242,12 @@ export function createCameraVideoTrack(config?: CameraVideoTrackInitConfig) {
   }
 }
 
+/**
+ * Creates and stores the custom audio track
+ * @param config Config for the custom audio track
+ * @returns React hook that can be used to access the custom audio track
+ * @category Wrapper
+ */
 export function createCustomAudioTrack(config: CustomAudioTrackInitConfig) {
   let track: ILocalAudioTrack | null = null
   async function createClosure() {
@@ -238,6 +278,12 @@ export function createCustomAudioTrack(config: CustomAudioTrackInitConfig) {
   }
 }
 
+/**
+ * Creates and stores the custom video track
+ * @param config Config for the custom video track
+ * @returns React hook that can be used to access the custom video track
+ * @category Wrapper
+ */
 export function createCustomVideoTrack(config: CustomVideoTrackInitConfig) {
   let track: ILocalVideoTrack | null = null
   async function createClosure() {
@@ -268,6 +314,12 @@ export function createCustomVideoTrack(config: CustomVideoTrackInitConfig) {
   }
 }
 
+/**
+ * Creates and stores the microphone track
+ * @param config Config for the microphone track
+ * @returns React hook that can be used to access the microphone track
+ * @category Wrapper
+ */
 export function createMicrophoneAudioTrack(
   config?: MicrophoneAudioTrackInitConfig
 ) {
@@ -300,6 +352,13 @@ export function createMicrophoneAudioTrack(
   }
 }
 
+/**
+ * Creates and stores the screenshare tracks
+ * @param config Config for the screenshare tracks
+ * @param withAudio Try and create audio track as well (needs browser support)
+ * @returns React hook that can be used to access the screenshare tracks
+ * @category Wrapper
+ */
 export function createScreenVideoTrack(
   config: ScreenVideoTrackInitConfig,
   withAudio?: 'enable' | 'disable' | 'auto'
@@ -330,7 +389,11 @@ export function createScreenVideoTrack(
   }
 }
 
-
+/**
+ * A React component to render the local or remote videoTrack
+ * @param props videoTrack and video config 
+ * @returns An HTML div element containing the provided videoTrack
+ */
 export const AgoraVideoPlayer = (props: React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> & { videoTrack: ILocalVideoTrack | IRemoteVideoTrack | ICameraVideoTrack } & {config?: VideoPlayerConfig}) => {
   const vidDiv: RefObject<HTMLDivElement> = useRef(null)
   const { videoTrack, config, ...other } = props;
