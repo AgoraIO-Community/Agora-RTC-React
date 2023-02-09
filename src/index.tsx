@@ -1,7 +1,13 @@
 /**
  * @module Agora React Wrapper
  */
-import React, { RefObject, useEffect, useLayoutEffect, useRef, useState } from 'react'
+import React, {
+  RefObject,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import AgoraRTC, {
   BufferSourceAudioTrackInitConfig,
   CameraVideoTrackInitConfig,
@@ -17,11 +23,11 @@ import AgoraRTC, {
   IRemoteVideoTrack,
   MicrophoneAudioTrackInitConfig,
   ScreenVideoTrackInitConfig,
-  VideoPlayerConfig
-} from 'agora-rtc-sdk-ng'
+  VideoPlayerConfig,
+} from "agora-rtc-sdk-ng";
 
 export default AgoraRTC;
-export * from 'agora-rtc-sdk-ng';
+export * from "agora-rtc-sdk-ng";
 
 /**
  * @ignore
@@ -105,25 +111,25 @@ export enum AgoraRTCErrorCode {
   CROSS_CHANNEL_FAILED_JOIN_DEST = "CROSS_CHANNEL_FAILED_JOIN_DEST",
   CROSS_CHANNEL_FAILED_PACKET_SENT_TO_DEST = "CROSS_CHANNEL_FAILED_PACKET_SENT_TO_DEST",
   CROSS_CHANNEL_SERVER_ERROR_RESPONSE = "CROSS_CHANNEL_SERVER_ERROR_RESPONSE",
-  METADATA_OUT_OF_RANGE = "METADATA_OUT_OF_RANGE"
+  METADATA_OUT_OF_RANGE = "METADATA_OUT_OF_RANGE",
 }
 
 /**
- * Initializes a Web SDK client and stores the instance for the lifecycle of the application 
+ * Initializes a Web SDK client and stores the instance for the lifecycle of the application
  * @param config Configuration for the Web SDK Client instance
  * @returns React hook that gives access to the Web SDK Client instance
  * @category Wrapper
  */
 export const createClient = (config: ClientConfig) => {
-  let client: IAgoraRTCClient
+  let client: IAgoraRTCClient;
   function createClosure() {
     if (!client) {
-      client = AgoraRTC.createClient(config)
+      client = AgoraRTC.createClient(config);
     }
-    return client
+    return client;
   }
-  return () => createClosure()
-}
+  return () => createClosure();
+};
 
 /**
  * Creates and stores the camera and microphone tracks
@@ -136,36 +142,41 @@ export function createMicrophoneAndCameraTracks(
   audioConfig?: MicrophoneAudioTrackInitConfig | undefined,
   videoConfig?: CameraVideoTrackInitConfig | undefined
 ) {
-  let tracks: [IMicrophoneAudioTrack, ICameraVideoTrack] | null = null
+  let tracks: [IMicrophoneAudioTrack, ICameraVideoTrack] | null = null;
   async function createClosure() {
     tracks = await AgoraRTC.createMicrophoneAndCameraTracks(
       audioConfig,
       videoConfig
-    )
-    return tracks
+    );
+    return tracks;
   }
   return function useMicrophoneAndCameraTracks() {
-    const [ready, setReady] = useState(false)
-    const [agoraRTCError, setAgoraRTCError] = useState<null | AgoraRTCError>(null)
-    const ref = useRef(tracks)
+    const [ready, setReady] = useState(false);
+    const [agoraRTCError, setAgoraRTCError] = useState<null | AgoraRTCError>(
+      null
+    );
+    const ref = useRef(tracks);
 
     useEffect(() => {
       if (ref.current === null) {
-        createClosure().then((tracks) => {
-          ref.current = tracks
-          setReady(true)
-        }, (e) => {
-          setAgoraRTCError(e)
-        })
+        createClosure().then(
+          (tracks) => {
+            ref.current = tracks;
+            setReady(true);
+          },
+          (e) => {
+            setAgoraRTCError(e);
+          }
+        );
       } else {
-        setReady(true)
+        setReady(true);
       }
       return () => {
-        tracks = null
-      }
-    }, [])
-    return { ready, tracks: ref.current, error: agoraRTCError }
-  }
+        tracks = null;
+      };
+    }, []);
+    return { ready, tracks: ref.current, error: agoraRTCError };
+  };
 }
 
 /**
@@ -177,33 +188,38 @@ export function createMicrophoneAndCameraTracks(
 export function createBufferSourceAudioTrack(
   config: BufferSourceAudioTrackInitConfig
 ) {
-  let track: IBufferSourceAudioTrack | null = null
+  let track: IBufferSourceAudioTrack | null = null;
   async function createClosure() {
-    track = await AgoraRTC.createBufferSourceAudioTrack(config)
-    return track
+    track = await AgoraRTC.createBufferSourceAudioTrack(config);
+    return track;
   }
   return function useBufferSourceAudioTrack() {
-    const [ready, setReady] = useState(false)
-    const [agoraRTCError, setAgoraRTCError] = useState<null | AgoraRTCError>(null)
-    const ref = useRef(track)
+    const [ready, setReady] = useState(false);
+    const [agoraRTCError, setAgoraRTCError] = useState<null | AgoraRTCError>(
+      null
+    );
+    const ref = useRef(track);
 
     useEffect(() => {
       if (ref.current === null) {
-        createClosure().then((track) => {
-          ref.current = track
-          setReady(true)
-        }, (e) => {
-          setAgoraRTCError(e)
-        })
+        createClosure().then(
+          (track) => {
+            ref.current = track;
+            setReady(true);
+          },
+          (e) => {
+            setAgoraRTCError(e);
+          }
+        );
       } else {
-        setReady(true)
+        setReady(true);
       }
       return () => {
-        track = null
-      }
-    }, [])
-    return { ready, track: ref.current, error: agoraRTCError }
-  }
+        track = null;
+      };
+    }, []);
+    return { ready, track: ref.current, error: agoraRTCError };
+  };
 }
 
 /**
@@ -213,33 +229,38 @@ export function createBufferSourceAudioTrack(
  * @category Wrapper
  */
 export function createCameraVideoTrack(config?: CameraVideoTrackInitConfig) {
-  let track: ICameraVideoTrack | null = null
+  let track: ICameraVideoTrack | null = null;
   async function createClosure() {
-    track = await AgoraRTC.createCameraVideoTrack(config)
-    return track
+    track = await AgoraRTC.createCameraVideoTrack(config);
+    return track;
   }
   return function useCameraVideoTrack() {
-    const [ready, setReady] = useState(false)
-    const [agoraRTCError, setAgoraRTCError] = useState<null | AgoraRTCError>(null)
-    const ref = useRef(track)
+    const [ready, setReady] = useState(false);
+    const [agoraRTCError, setAgoraRTCError] = useState<null | AgoraRTCError>(
+      null
+    );
+    const ref = useRef(track);
 
     useEffect(() => {
       if (ref.current === null) {
-        createClosure().then((track) => {
-          ref.current = track
-          setReady(true)
-        }, (e) => {
-          setAgoraRTCError(e)
-        })
+        createClosure().then(
+          (track) => {
+            ref.current = track;
+            setReady(true);
+          },
+          (e) => {
+            setAgoraRTCError(e);
+          }
+        );
       } else {
-        setReady(true)
+        setReady(true);
       }
       return () => {
-        track = null
-      }
-    }, [])
-    return { ready, track: ref.current, error: agoraRTCError }
-  }
+        track = null;
+      };
+    }, []);
+    return { ready, track: ref.current, error: agoraRTCError };
+  };
 }
 
 /**
@@ -249,33 +270,55 @@ export function createCameraVideoTrack(config?: CameraVideoTrackInitConfig) {
  * @category Wrapper
  */
 export function createCustomAudioTrack(config: CustomAudioTrackInitConfig) {
-  let track: ILocalAudioTrack | null = null
+  let track: ILocalAudioTrack | null = null;
   async function createClosure() {
-    track = await AgoraRTC.createCustomAudioTrack(config)
-    return track
+    track = await AgoraRTC.createCustomAudioTrack(config);
+    return track;
   }
   return function useCustomAudioTrack() {
-    const [ready, setReady] = useState(false)
-    const [agoraRTCError, setAgoraRTCError] = useState<null | AgoraRTCError>(null)
-    const ref = useRef(track)
+    const [ready, setReady] = useState(false);
+    const [agoraRTCError, setAgoraRTCError] = useState<null | AgoraRTCError>(
+      null
+    );
+    const ref = useRef(track);
 
     useEffect(() => {
       if (ref.current === null) {
-        createClosure().then((track) => {
-          ref.current = track
-          setReady(true)
-        }, (e) => {
-          setAgoraRTCError(e)
-        })
+        createClosure().then(
+          (track) => {
+            ref.current = track;
+            setReady(true);
+          },
+          (e) => {
+            setAgoraRTCError(e);
+          }
+        );
       } else {
-        setReady(true)
+        setReady(true);
       }
       return () => {
-        track = null
-      }
-    }, [])
-    return { ready, track: ref.current, error: agoraRTCError }
-  }
+        track = null;
+      };
+    }, []);
+    return { ready, track: ref.current, error: agoraRTCError };
+  };
+}
+
+/**
+ * Creates and stores the custom audio track
+ * @param config Config for the custom audio track
+ * @returns React hook that can be used to access the custom audio track
+ * @category Wrapper
+ */
+export function useCustomAudioTrackv2() {
+  const [ready, setReady] = useState(false);
+  const ref = useRef<ILocalAudioTrack>();
+  const updateTrack = async (config: CustomAudioTrackInitConfig) => {
+    setReady(false);
+    ref.current = AgoraRTC.createCustomAudioTrack(config);
+    setReady(true);
+  };
+  return { ready, track: ref.current, updateTrack };
 }
 
 /**
@@ -285,33 +328,38 @@ export function createCustomAudioTrack(config: CustomAudioTrackInitConfig) {
  * @category Wrapper
  */
 export function createCustomVideoTrack(config: CustomVideoTrackInitConfig) {
-  let track: ILocalVideoTrack | null = null
+  let track: ILocalVideoTrack | null = null;
   async function createClosure() {
-    track = await AgoraRTC.createCustomVideoTrack(config)
-    return track
+    track = await AgoraRTC.createCustomVideoTrack(config);
+    return track;
   }
   return function useCustomVideoTrack() {
-    const [ready, setReady] = useState(false)
-    const [agoraRTCError, setAgoraRTCError] = useState<null | AgoraRTCError>(null)
-    const ref = useRef(track)
+    const [ready, setReady] = useState(false);
+    const [agoraRTCError, setAgoraRTCError] = useState<null | AgoraRTCError>(
+      null
+    );
+    const ref = useRef(track);
 
     useEffect(() => {
       if (ref.current === null) {
-        createClosure().then((track) => {
-          ref.current = track
-          setReady(true)
-        }, (e) => {
-          setAgoraRTCError(e)
-        })
+        createClosure().then(
+          (track) => {
+            ref.current = track;
+            setReady(true);
+          },
+          (e) => {
+            setAgoraRTCError(e);
+          }
+        );
       } else {
-        setReady(true)
+        setReady(true);
       }
       return () => {
-        track = null
-      }
-    }, [])
-    return { ready, track: ref.current, error: agoraRTCError }
-  }
+        track = null;
+      };
+    }, []);
+    return { ready, track: ref.current, error: agoraRTCError };
+  };
 }
 
 /**
@@ -323,33 +371,38 @@ export function createCustomVideoTrack(config: CustomVideoTrackInitConfig) {
 export function createMicrophoneAudioTrack(
   config?: MicrophoneAudioTrackInitConfig
 ) {
-  let track: IMicrophoneAudioTrack | null = null
+  let track: IMicrophoneAudioTrack | null = null;
   async function createClosure() {
-    track = await AgoraRTC.createMicrophoneAudioTrack(config)
-    return track
+    track = await AgoraRTC.createMicrophoneAudioTrack(config);
+    return track;
   }
   return function useMicrophoneAudioTrack() {
-    const [ready, setReady] = useState(false)
-    const [agoraRTCError, setAgoraRTCError] = useState<null | AgoraRTCError>(null)
-    const ref = useRef(track)
+    const [ready, setReady] = useState(false);
+    const [agoraRTCError, setAgoraRTCError] = useState<null | AgoraRTCError>(
+      null
+    );
+    const ref = useRef(track);
 
     useEffect(() => {
       if (ref.current === null) {
-        createClosure().then((track) => {
-          ref.current = track
-          setReady(true)
-        }, (e) => {
-          setAgoraRTCError(e)
-        })
+        createClosure().then(
+          (track) => {
+            ref.current = track;
+            setReady(true);
+          },
+          (e) => {
+            setAgoraRTCError(e);
+          }
+        );
       } else {
-        setReady(true)
+        setReady(true);
       }
       return () => {
-        track = null
-      }
-    }, [])
-    return { ready, track: ref.current, error: agoraRTCError }
-  }
+        track = null;
+      };
+    }, []);
+    return { ready, track: ref.current, error: agoraRTCError };
+  };
 }
 
 /**
@@ -361,48 +414,60 @@ export function createMicrophoneAudioTrack(
  */
 export function createScreenVideoTrack(
   config: ScreenVideoTrackInitConfig,
-  withAudio?: 'enable' | 'disable' | 'auto'
+  withAudio?: "enable" | "disable" | "auto"
 ) {
-  let tracks: [ILocalVideoTrack, ILocalAudioTrack] | ILocalVideoTrack
+  let tracks: [ILocalVideoTrack, ILocalAudioTrack] | ILocalVideoTrack;
   async function createClosure() {
-    tracks = await AgoraRTC.createScreenVideoTrack(config, withAudio)
-    return tracks
+    tracks = await AgoraRTC.createScreenVideoTrack(config, withAudio);
+    return tracks;
   }
   return function useScreenVideoTrack() {
-    const [ready, setReady] = useState(false)
-    const [agoraRTCError, setAgoraRTCError] = useState<null | AgoraRTCError>(null)
-    const ref = useRef(tracks)
+    const [ready, setReady] = useState(false);
+    const [agoraRTCError, setAgoraRTCError] = useState<null | AgoraRTCError>(
+      null
+    );
+    const ref = useRef(tracks);
 
     useEffect(() => {
       if (ref.current === undefined) {
-        createClosure().then((tracks) => {
-          ref.current = tracks
-          setReady(true)
-        }, (e) => {
-          setAgoraRTCError(e)
-        })
+        createClosure().then(
+          (tracks) => {
+            ref.current = tracks;
+            setReady(true);
+          },
+          (e) => {
+            setAgoraRTCError(e);
+          }
+        );
       } else {
-        setReady(true)
+        setReady(true);
       }
-    }, [])
-    return { ready, tracks: ref.current, error: agoraRTCError }
-  }
+    }, []);
+    return { ready, tracks: ref.current, error: agoraRTCError };
+  };
 }
 
 /**
  * A React component to render the local or remote videoTrack
- * @param props videoTrack and video config 
+ * @param props videoTrack and video config
  * @returns An HTML div element containing the provided videoTrack
  */
-export const AgoraVideoPlayer = (props: React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> & { videoTrack: ILocalVideoTrack | IRemoteVideoTrack | ICameraVideoTrack } & {config?: VideoPlayerConfig}) => {
-  const vidDiv: RefObject<HTMLDivElement> = useRef(null)
+export const AgoraVideoPlayer = (
+  props: React.DetailedHTMLProps<
+    React.HTMLAttributes<HTMLDivElement>,
+    HTMLDivElement
+  > & {
+    videoTrack: ILocalVideoTrack | IRemoteVideoTrack | ICameraVideoTrack;
+  } & { config?: VideoPlayerConfig }
+) => {
+  const vidDiv: RefObject<HTMLDivElement> = useRef(null);
   const { videoTrack, config, ...other } = props;
   useLayoutEffect(() => {
-    if (vidDiv.current !== null) videoTrack.play(vidDiv.current, config)
+    if (vidDiv.current !== null) videoTrack.play(vidDiv.current, config);
     return () => {
-      videoTrack.stop()
-    }
-  }, [videoTrack])
+      videoTrack.stop();
+    };
+  }, [videoTrack]);
 
-  return <div {...other} ref={vidDiv} />
-}
+  return <div {...other} ref={vidDiv} />;
+};

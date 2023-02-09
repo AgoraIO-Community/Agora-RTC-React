@@ -1,22 +1,22 @@
 {
+  "files": ["src/index.tsx"],
   "compilerOptions": {
-    "outDir": "dist",
-    "module": "esnext",
-    "lib": ["dom", "esnext"],
-    "moduleResolution": "node",
+    "target": "es5",
     "jsx": "react",
-    "sourceMap": true,
+    "module": "commonjs",
+    "lib": ["es6", "DOM"],
+    "typeRoots": ["./src/vite.env.d.ts"],
+    "allowJs": true,
     "declaration": true,
-    "esModuleInterop": true,
-    "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "allowSyntheticDefaultImports": true
+    "skipLibCheck": true,
+    "noEmit": false,
+    "strict": false,
+    "noImplicitAny": false,
+    "moduleResolution": "node",
+    "baseUrl": "./",
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "dist", "example"]
+  "exclude": ["./example", "./node_modules"]
 }
