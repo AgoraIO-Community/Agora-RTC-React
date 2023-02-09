@@ -1,0 +1,22 @@
+{
+  "files": ["src/index.tsx"],
+  "compilerOptions": {
+    "target": "es5",
+    "jsx": "react",
+    "module": "commonjs",
+    "lib": ["es6", "DOM"],
+    "typeRoots": ["./src/vite.env.d.ts"],
+    "allowJs": true,
+    "declaration": true,
+    "skipLibCheck": true,
+    "noEmit": false,
+    "strict": false,
+    "noImplicitAny": false,
+    "moduleResolution": "node",
+    "baseUrl": "./",
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true
+  },
+  "exclude": ["./example", "./node_modules"]
+}
