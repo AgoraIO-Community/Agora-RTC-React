@@ -18,5 +18,5 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true
   },
-  "exclude": ["./example", "./node_modules"]
+  "exclude": ["./example", "./node_modules", "./dist"]
 }
