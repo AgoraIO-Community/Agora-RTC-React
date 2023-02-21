@@ -2,6 +2,7 @@
  * @module Agora React Wrapper
  */
 import React, {
+  PropsWithChildren,
   RefObject,
   useEffect,
   useLayoutEffect,
@@ -24,7 +25,7 @@ import AgoraRTC, {
   ScreenVideoTrackInitConfig,
   VideoPlayerConfig,
 } from "agora-rtc-sdk-ng";
-import { useQuery, UseQueryOptions } from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider, useQuery, UseQueryOptions } from "@tanstack/react-query";
 
 export default AgoraRTC;
 export * from "agora-rtc-sdk-ng";
@@ -329,6 +330,10 @@ export const AgoraVideoPlayer = (
 
   return <div {...other} ref={vidDiv} />;
 };
+export const AgoraQueryClient = new QueryClient()
+export const AgoraProvider: React.FC<PropsWithChildren> = ({children}) => {
+  return <QueryClientProvider client={AgoraQueryClient}>{children}</QueryClientProvider>
+}
 
 // remove soon
 /**
