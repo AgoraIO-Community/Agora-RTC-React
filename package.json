@@ -1,7 +1,7 @@
 {
   "name": "agora-rtc-react",
   "version": "2.0.0",
-  "description": "",
+  "description": "A React wrapper for the Agora Web SDK",
   "files": [
     "dist"
   ],
@@ -19,21 +19,27 @@
     "build": "vite build"
   },
   "author": "EkaanshArora",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
-    "@esbuild-plugins/node-globals-polyfill": "^0.1.1",
-    "@esbuild-plugins/node-modules-polyfill": "^0.1.4",
+    "@esbuild-plugins/node-globals-polyfill": "^0.2.3",
+    "@esbuild-plugins/node-modules-polyfill": "^0.2.2",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "@vitejs/plugin-react": "^3.1.0",
-    "esbuild": "^0.17.6",
+    "esbuild": "^0.17.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "vite": "^3.2.4",
+    "vite": "^4.1.3",
     "vite-plugin-dts": "^1.7.1",
-    "vite-plugin-externalize-deps": "^0.4.0"
+    "vite-plugin-externalize-deps": "^0.5.0"
   },
   "dependencies": {
+    "@tanstack/react-query": "^4.24.9",
     "agora-rtc-sdk-ng": "^4.16.1"
+  },
+  "peerDependencies": {
+    "@tanstack/react-query": "^4.24.9",
+    "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
+    "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
   }
 }
