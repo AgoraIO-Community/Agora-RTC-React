@@ -1,15 +1,17 @@
-# Agora RTC SDK React Wrapper
+## Agora RTC SDK React Wrapper (Archive)
 
-## Update: 2.x is coming!
-We're working on a full featured SDK for React, it's available in Beta right now. It should be a much better experience of using the Agora SDK with React.
+### Agora now offers an official React SDK!
+The React SDK (2.x) repo is available [here](https://github.com/AgoraIO-Extensions/agora-rtc-react/).  
+It's released as v2.x under the same [npm package](https://www.npmjs.com/package/agora-rtc-react/v/2.0.0-beta.0). 
 
 ### Links for 2.x
+- [Docs](https://docs-beta.agora.io/en/video-calling/get-started/get-started-sdk?platform=react-js)
+- [API Reference](https://api-ref.agora.io/en/video-sdk/reactjs/2.x/index.html)
+- [NPM Package](https://www.npmjs.com/package/agora-rtc-react/v/2.0.0-beta.0)
 - [GitHub Repo](https://github.com/AgoraIO-Extensions/agora-rtc-react/)
-- [Beta Docs](https://docs-beta.agora.io/en/video-calling/get-started/get-started-sdk?platform=react-js)
-- [API reference](https://api-ref.agora.io/en/video-sdk/reactjs/2.x/index.html)
-- [NPM package](https://www.npmjs.com/package/agora-rtc-react/v/2.0.0-beta.0)
 
 ---
+
 ## 1.x (this repo)
 A react (react.js) wrapper for [Agora RTC NG SDK](https://www.npmjs.com/package/agora-rtc-sdk-ng).
 
