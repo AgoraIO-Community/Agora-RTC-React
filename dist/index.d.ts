@@ -169,6 +169,30 @@ export declare function createMicrophoneAudioTrack(config?: MicrophoneAudioTrack
  * @returns React hook that can be used to access the screenshare tracks
  * @category Wrapper
  */
+ export declare function createScreenVideoTrack(config: ScreenVideoTrackInitConfig, withAudio: 'enable'): () => {
+    ready: boolean;
+    tracks: [ILocalVideoTrack, ILocalAudioTrack];
+    error: AgoraRTCError | null;
+};
+/**
+ * Creates and stores the screenshare tracks
+ * @param config Config for the screenshare tracks
+ * @param withAudio Try and create audio track as well (needs browser support)
+ * @returns React hook that can be used to access the screenshare tracks
+ * @category Wrapper
+ */
+ export declare function createScreenVideoTrack(config: ScreenVideoTrackInitConfig, withAudio: 'disable'): () => {
+    ready: boolean;
+    track: ILocalVideoTrack;
+    error: AgoraRTCError | null;
+};
+/**
+ * Creates and stores the screenshare tracks
+ * @param config Config for the screenshare tracks
+ * @param withAudio Try and create audio track as well (needs browser support)
+ * @returns React hook that can be used to access the screenshare tracks
+ * @category Wrapper
+ */
 export declare function createScreenVideoTrack(config: ScreenVideoTrackInitConfig, withAudio?: 'enable' | 'disable' | 'auto'): () => {
     ready: boolean;
     tracks: ILocalVideoTrack | [ILocalVideoTrack, ILocalAudioTrack];
